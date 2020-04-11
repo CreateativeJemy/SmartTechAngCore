@@ -1,0 +1,31 @@
+<br>
+<div>
+<button class="btn btn-outline-success mr-3" (click)="exportAsXLSX()">
+Export to Excel
+</button>
+<a class="btn btn-outline-success ml-2" style="margin-right: 500px;" routerLink='/product/create'><i class="fa fa-plus-square"> New</i></a>
+</div>
+<br>
+<table class="table table-hover" id="tblProducts">
+    <thead class="thead-light">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Photo</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let prod of service.listData">
+            <td>{{prod.Name}}</td>
+            <td >{{prod.Price}}</td>
+            <td >{{prod.Photo}}</td>
+            <td >{{prod.LastUpdate}} </td>
+            <td>
+                <a class="btn"  routerLink='/product/edit/{{prod.Id}}'><i class="fa fa-pencil"></i></a>
+                <i class="fa fa-trash fa-lg text-danger" (click)="onDelete(prod.Id)"></i>
+            </td>
+        </tr>
+    </tbody>
+</table>
