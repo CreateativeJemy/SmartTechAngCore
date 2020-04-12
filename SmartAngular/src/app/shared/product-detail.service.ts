@@ -13,11 +13,10 @@ export class ProductDetailService {
   constructor(private http: HttpClient,formBuilder:FormBuilder) { 
     
   }
-
-  refreshProducts(){
-    return this.http.get(environment.apiUrl+'/Product/GetProducts')
+  
+  refreshProducts(txtSearch:string = null){
+    return this.http.get(environment.apiUrl+'/Product/GetProducts/' + txtSearch)
                     .subscribe(res =>{ this.listData = res as ProductDetail[]});
-                    //.toPromise().then(res => this.listData = res as ProductDetail[]);
   }
   GetProduct(id:number):any{
     return this.http.get(environment.apiUrl+'/Product/GetProduct/'+id);

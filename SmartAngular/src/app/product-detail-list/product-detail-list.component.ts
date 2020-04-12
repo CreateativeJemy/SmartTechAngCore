@@ -18,9 +18,13 @@ export class ProductDetailListComponent implements OnInit {
               private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.service.refreshProducts();
+    this.service.refreshProducts(null);
   }
-
+  searchProducts(txtSearch:string){
+    if(txtSearch){
+      this.service.refreshProducts(txtSearch);
+    }
+  }
   exportAsXLSX():void {
     this.excelService.exportAsExcelFile(this.service.listData, 'sample');
  }
@@ -30,7 +34,7 @@ export class ProductDetailListComponent implements OnInit {
       this.service.deleteProduct(id).subscribe(
         res => {
           this.toastr.warning("Deleted Successfull","Delete Product");
-          this.service.refreshProducts();
+          this.service.refreshProducts(null);
         },
         err => {
           console.log(err);

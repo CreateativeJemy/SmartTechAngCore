@@ -6,6 +6,8 @@ Export to Excel
 <a class="btn btn-outline-success ml-2" style="margin-right: 500px;" routerLink='/product/create'><i class="fa fa-plus-square"> New</i></a>
 </div>
 <br>
+<input type="text" width="300px" class="form-control" placeholder="Search Products...  " #txtSearch (keyup)="searchProducts(txtSearch.value)">
+<br>
 <table class="table table-hover" id="tblProducts">
     <thead class="thead-light">
         <tr>
@@ -17,6 +19,9 @@ Export to Excel
         </tr>
     </thead>
     <tbody>
+        <tr *ngIf="service.listData.length == 0">
+            <td class="text-center" colspan="5">No Data Founded</td>
+        </tr>
         <tr *ngFor="let prod of service.listData">
             <td>{{prod.Name}}</td>
             <td >{{prod.Price}}</td>

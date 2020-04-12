@@ -24,10 +24,17 @@ namespace SmartTechAngCore.Controllers
             env = _env;
         }
         // GET: api/Product
-        [HttpGet("[action]")]
-        public IActionResult GetProducts()
+        [HttpGet("[action]/{txtSearch}")]
+        public IActionResult GetProducts([FromRoute] string txtSearch)
         {
-            return Ok(db.Products.ToList());
+            if (txtSearch == "null")
+            {
+                return Ok(db.Products.ToList());
+            }
+            else
+            {
+                return Ok(db.Products.Where(x => x.Name.Contains(txtSearch) || x.Price.ToString().Contains(txtSearch)).ToList());
+            }
         }
 
         [HttpPost("[action]"), DisableRequestSizeLimit]

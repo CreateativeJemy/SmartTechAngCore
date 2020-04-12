@@ -56,7 +56,7 @@ export class ProductDetailComponent implements OnInit {
            this.service.postProduct(this.productForm.value).subscribe(
               res => 
               {
-                this.service.refreshProducts();
+                this.service.refreshProducts(null);
                 this.toastr.success("Submitted Successfull","Product Add");
                 this.router.navigate(['/products']);
                 this.resetForm();

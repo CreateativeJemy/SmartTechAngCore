@@ -69,7 +69,7 @@ export class ProductEditComponent implements OnInit {
           this.service.putProduct(this.productForm.value).subscribe(
             res =>
             {
-              this.service.refreshProducts();
+              this.service.refreshProducts(null);
               this.toastr.info("Submitted Successfull","Product Update");
               this.router.navigate(['/products']);
             },
